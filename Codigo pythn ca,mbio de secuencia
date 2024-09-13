@@ -1,0 +1,19 @@
+def detect_missense_mutations(ref_protein, query_protein):
+    mutations = [(i+1, ref_aa, query_aa) for i, (ref_aa, query_aa) in enumerate(zip(ref_protein, query_protein)) if ref_aa != query_aa]
+    return mutations
+
+# Ingreso de secuencias de aminoácidos por parte del usuario
+ref_protein = input("Ingresa la secuencia de referencia de aminoácidos: ")
+query_protein = input("Ingresa la secuencia mutada de aminoácidos: ")
+
+# Detectar mutaciones con cambio de sentido
+mutations = detect_missense_mutations(ref_protein, query_protein)
+
+# Mostrar resultados
+if mutations:
+    print("Mutaciones con cambio de sentido encontradas en las siguientes posiciones:")
+    for pos, ref_aa, query_aa in mutations:
+        print(f"Posición: {pos}, Ref: {ref_aa}, Mutación: {query_aa}")
+else:
+    print("No se encontraron mutaciones con cambio de sentido.")
+
